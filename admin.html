@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration MAMAFI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="admin-shell">
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Administration MAMAFI</h1>
+                <p class="text-gray-600">Sehatra ahafahana manova sy manatsara ny site</p>
+            </div>
+            <div class="flex gap-2">
+                <a href="index.html" class="admin-button secondary icon-button text-center"><i data-lucide="external-link"></i>Voir le site</a>
+                <button id="logout-admin" type="button" class="admin-button danger icon-button hidden"><i data-lucide="log-out"></i>Deconnexion</button>
+            </div>
+        </div>
+
+        <section id="login-panel" class="admin-card p-6 mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Connexion</h2>
+            <form id="login-form" class="admin-grid md:grid-cols-[1fr_auto] items-end">
+                <div class="admin-field">
+                    <label for="admin-password">Mot de passe administrateur</label>
+                    <div class="password-input-wrap">
+                        <input id="admin-password" type="password" autocomplete="current-password" required>
+                        <button type="button" class="password-toggle" data-password-target="admin-password" aria-label="Afficher le mot de passe"><i data-lucide="eye"></i></button>
+                    </div>
+                </div>
+                <button class="admin-button icon-button" type="submit"><i data-lucide="log-in"></i>Se connecter</button>
+            </form>
+            <button id="show-forgot-password" type="button" class="text-mamafi-green font-bold mt-4">Mot de passe oublie ?</button>
+            <form id="forgot-password-form" class="hidden admin-grid md:grid-cols-[1fr_1fr_auto] items-end mt-5 border-t pt-5">
+                <div class="admin-field">
+                    <label for="recovery-code-login">Code de recuperation</label>
+                    <div class="password-input-wrap">
+                        <input id="recovery-code-login" type="password" required>
+                        <button type="button" class="password-toggle" data-password-target="recovery-code-login" aria-label="Afficher le code"><i data-lucide="eye"></i></button>
+                    </div>
+                </div>
+                <div class="admin-field">
+                    <label for="reset-password">Nouveau mot de passe</label>
+                    <div class="password-input-wrap">
+                        <input id="reset-password" type="password" minlength="8" required>
+                        <button type="button" class="password-toggle" data-password-target="reset-password" aria-label="Afficher le mot de passe"><i data-lucide="eye"></i></button>
+                    </div>
+                </div>
+                <button class="admin-button icon-button" type="submit"><i data-lucide="rotate-key-round"></i>Reinitialiser</button>
+            </form>
+            <p id="forgot-password-status" class="text-sm text-gray-600 mt-3"></p>
+            <p class="text-sm text-gray-500 mt-3">Connexion securisee. Utilisez votre mot de passe actuel ou le code de recuperation en cas d'oubli.</p>
+        </section>
+
+        <section id="admin-panel" class="hidden grid gap-8">
+            <form id="content-form" class="grid gap-8">
+                <section class="admin-card p-6">
+                    <h2 class="section-title"><i data-lucide="badge"></i>Identite du site</h2>
+                    <div class="admin-grid md:grid-cols-3">
+                        <div class="admin-field">
+                            <label>Nom de l'association</label>
+                            <input data-path="identity.name" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Slogan</label>
+                            <input data-path="identity.tagline" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Logo</label>
+                            <div class="image-upload-field">
+                                <img class="upload-thumbnail" data-upload-preview src="./assets/images/mamafi-logo.png" alt="Apercu du logo">
+                                <input data-path="identity.logo" type="hidden">
+                                <label class="admin-button secondary icon-button upload-picker">
+                                    <i data-lucide="upload"></i>Choisir le logo
+                                    <input data-image-upload type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+                                </label>
+                                <span class="upload-file-name" data-upload-status>Aucun nouveau fichier</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <h2 class="section-title"><i data-lucide="palette"></i>Styles du site</h2>
+                    <div class="admin-grid md:grid-cols-5">
+                        <div class="admin-field">
+                            <label for="primary-color">Couleur principale</label>
+                            <input id="primary-color" data-path="styles.primaryColor" type="color">
+                        </div>
+                        <div class="admin-field">
+                            <label for="accent-color">Couleur accent</label>
+                            <input id="accent-color" data-path="styles.accentColor" type="color">
+                        </div>
+                        <div class="admin-field">
+                            <label for="background-color">Fond clair</label>
+                            <input id="background-color" data-path="styles.backgroundColor" type="color">
+                        </div>
+                        <div class="admin-field">
+                            <label for="font-family">Police</label>
+                            <input id="font-family" data-path="styles.fontFamily" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label for="hero-overlay">Opacite hero</label>
+                            <input id="hero-overlay" data-path="styles.heroOverlay" type="number" min="0" max="0.9" step="0.05">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h2 class="section-title mb-0"><i data-lucide="chart-no-axes-column-increasing"></i>Chiffres cles</h2>
+                        <button id="add-impact" type="button" class="admin-button icon-button"><i data-lucide="plus"></i>Ajouter</button>
+                    </div>
+                    <div id="impact-editor" class="grid gap-4"></div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <h2 class="section-title"><i data-lucide="type"></i>Textes principaux</h2>
+                    <div class="admin-grid md:grid-cols-2">
+                        <div class="admin-field">
+                            <label>Titre hero FR</label>
+                            <input data-path="hero.title.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre hero MG</label>
+                            <input data-path="hero.title.mg" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Sous-titre hero FR</label>
+                            <textarea data-path="hero.subtitle.fr"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label>Sous-titre hero MG</label>
+                            <textarea data-path="hero.subtitle.mg"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label>Bouton hero FR</label>
+                            <input data-path="hero.button.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Bouton hero MG</label>
+                            <input data-path="hero.button.mg" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre A propos FR</label>
+                            <input data-path="about.title.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre A propos MG</label>
+                            <input data-path="about.title.mg" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Texte A propos 1 FR</label>
+                            <textarea data-path="about.text1.fr"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label>Texte A propos 1 MG</label>
+                            <textarea data-path="about.text1.mg"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label>Texte A propos 2 FR</label>
+                            <textarea data-path="about.text2.fr"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label>Texte A propos 2 MG</label>
+                            <textarea data-path="about.text2.mg"></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h2 class="section-title mb-0"><i data-lucide="images"></i>Background dynamique de l'accueil</h2>
+                        <button id="add-hero-image" type="button" class="admin-button icon-button"><i data-lucide="image-plus"></i>Ajouter une image</button>
+                    </div>
+                    <div id="hero-images-editor" class="grid gap-4"></div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <h2 class="section-title"><i data-lucide="image"></i>Image A propos</h2>
+                    <div class="image-admin-layout">
+                        <div class="image-preview-frame">
+                            <img id="about-admin-preview" class="admin-image-preview" src="./assets/images/4.jpg" alt="Apercu image A propos">
+                        </div>
+                        <div class="admin-grid md:grid-cols-3 flex-1">
+                        <div class="admin-field">
+                            <label>Fichier image</label>
+                            <div class="image-upload-field">
+                                <input data-path="about.image.url" type="hidden">
+                                <label class="admin-button secondary icon-button upload-picker">
+                                    <i data-lucide="upload"></i>Choisir une image
+                                    <input data-image-upload type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+                                </label>
+                                <span class="upload-file-name" data-upload-status>Aucun nouveau fichier</span>
+                            </div>
+                        </div>
+                        <div class="admin-field">
+                            <label>Legende FR</label>
+                            <input data-path="about.image.caption.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Legende MG</label>
+                            <input data-path="about.image.caption.mg" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Hauteur (px)</label>
+                            <input data-path="about.image.display.height" type="number" min="100" max="900">
+                        </div>
+                        <div class="admin-field">
+                            <label>Cadrage horizontal (%)</label>
+                            <input data-path="about.image.display.positionX" type="range" min="0" max="100">
+                        </div>
+                        <div class="admin-field">
+                            <label>Cadrage vertical (%)</label>
+                            <input data-path="about.image.display.positionY" type="range" min="0" max="100">
+                        </div>
+                        <div class="admin-field">
+                            <label>Luminosite (%)</label>
+                            <input data-path="about.image.display.brightness" type="range" min="20" max="200">
+                        </div>
+                        <div class="admin-field">
+                            <label>Contraste (%)</label>
+                            <input data-path="about.image.display.contrast" type="range" min="20" max="200">
+                        </div>
+                        <div class="admin-field">
+                            <label>Saturation (%)</label>
+                            <input data-path="about.image.display.saturation" type="range" min="0" max="200">
+                        </div>
+                        <div class="admin-field">
+                            <label>Rotation (deg)</label>
+                            <input data-path="about.image.display.rotation" type="number" min="-180" max="180">
+                        </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h2 class="section-title mb-0"><i data-lucide="sprout"></i>Domaines d'action</h2>
+                        <button id="add-action" type="button" class="admin-button icon-button"><i data-lucide="plus"></i>Ajouter</button>
+                    </div>
+                    <div class="admin-grid md:grid-cols-2 mb-4">
+                        <div class="admin-field">
+                            <label>Titre section FR</label>
+                            <input data-path="actions.title.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre section MG</label>
+                            <input data-path="actions.title.mg" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre page actions FR</label>
+                            <input data-path="actions.pageTitle.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre page actions MG</label>
+                            <input data-path="actions.pageTitle.mg" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Introduction page FR</label>
+                            <textarea data-path="actions.intro.fr"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label>Introduction page MG</label>
+                            <textarea data-path="actions.intro.mg"></textarea>
+                        </div>
+                    </div>
+                    <div id="actions-editor" class="grid gap-4"></div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h2 class="section-title mb-0"><i data-lucide="newspaper"></i>Actualites et contenus</h2>
+                        <button id="add-content" type="button" class="admin-button icon-button"><i data-lucide="plus"></i>Ajouter</button>
+                    </div>
+                    <div class="admin-grid md:grid-cols-2 mb-4">
+                        <div class="admin-field">
+                            <label>Titre page actualites FR</label>
+                            <input data-path="news.title.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre page actualites MG</label>
+                            <input data-path="news.title.mg" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Introduction actualites FR</label>
+                            <textarea data-path="news.intro.fr"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label>Introduction actualites MG</label>
+                            <textarea data-path="news.intro.mg"></textarea>
+                        </div>
+                    </div>
+                    <div id="contents-editor" class="grid gap-4"></div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <h2 class="section-title"><i data-lucide="share-2"></i>Reseaux sociaux</h2>
+                    <div class="admin-grid md:grid-cols-4">
+                        <div class="admin-field">
+                            <label>Facebook</label>
+                            <input data-path="socials.facebook" type="url">
+                        </div>
+                        <div class="admin-field">
+                            <label>Instagram</label>
+                            <input data-path="socials.instagram" type="url">
+                        </div>
+                        <div class="admin-field">
+                            <label>YouTube</label>
+                            <input data-path="socials.youtube" type="url">
+                        </div>
+                        <div class="admin-field">
+                            <label>LinkedIn</label>
+                            <input data-path="socials.linkedin" type="url">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h2 class="section-title mb-0"><i data-lucide="handshake"></i>Partenaires</h2>
+                        <button id="add-partner" type="button" class="admin-button icon-button"><i data-lucide="plus"></i>Ajouter</button>
+                    </div>
+                    <div class="admin-grid md:grid-cols-2 mb-4">
+                        <div class="admin-field">
+                            <label>Titre partenaires FR</label>
+                            <input data-path="partners.title.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre partenaires MG</label>
+                            <input data-path="partners.title.mg" type="text">
+                        </div>
+                    </div>
+                    <div id="partners-editor" class="grid gap-4"></div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h2 class="section-title mb-0"><i data-lucide="map-pinned"></i>Zones d'intervention</h2>
+                        <button id="add-zone" type="button" class="admin-button icon-button"><i data-lucide="map-pin-plus"></i>Ajouter</button>
+                    </div>
+                    <div class="admin-grid md:grid-cols-2 mb-4">
+                        <div class="admin-field">
+                            <label>Titre carte FR</label>
+                            <input data-path="intervention.title.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre carte MG</label>
+                            <input data-path="intervention.title.mg" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Introduction FR</label>
+                            <textarea data-path="intervention.intro.fr"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label>Introduction MG</label>
+                            <textarea data-path="intervention.intro.mg"></textarea>
+                        </div>
+                    </div>
+                    <div id="zones-editor" class="grid gap-4"></div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <h2 class="section-title"><i data-lucide="heart-handshake"></i>Adhesion, dons et contact</h2>
+                    <div class="admin-grid md:grid-cols-2">
+                        <div class="admin-field">
+                            <label>Titre dons FR</label>
+                            <input data-path="join.title.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre dons MG</label>
+                            <input data-path="join.title.mg" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Sous-titre dons FR</label>
+                            <textarea data-path="join.subtitle.fr"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label>Sous-titre dons MG</label>
+                            <textarea data-path="join.subtitle.mg"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre contact FR</label>
+                            <input data-path="contact.title.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Titre contact MG</label>
+                            <input data-path="contact.title.mg" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Intro contact FR</label>
+                            <input data-path="contact.intro.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Intro contact MG</label>
+                            <input data-path="contact.intro.mg" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Adresse</label>
+                            <input data-path="contact.address" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Email</label>
+                            <input data-path="contact.email" type="email">
+                        </div>
+                        <div class="admin-field">
+                            <label>Telephone</label>
+                            <input data-path="contact.phone" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Annee footer</label>
+                            <input data-path="footer.year" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Mention legale FR</label>
+                            <input data-path="footer.legal.fr" type="text">
+                        </div>
+                        <div class="admin-field">
+                            <label>Mention legale MG</label>
+                            <input data-path="footer.legal.mg" type="text">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="admin-card p-6">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h2 class="section-title mb-0"><i data-lucide="wallet-cards"></i>Moyens de don</h2>
+                        <button id="add-donation-method" type="button" class="admin-button icon-button"><i data-lucide="plus"></i>Ajouter</button>
+                    </div>
+                    <div id="donation-methods-editor" class="grid gap-4"></div>
+                </section>
+
+                <div class="admin-actions sticky bottom-4 bg-white border border-gray-200 rounded-lg p-4 shadow-lg">
+                    <button type="submit" class="admin-button icon-button"><i data-lucide="save"></i>Enregistrer les modifications</button>
+                    <button id="reload-content" type="button" class="admin-button secondary icon-button"><i data-lucide="refresh-cw"></i>Recharger</button>
+                    <span id="admin-status" class="text-sm text-gray-700 self-center"></span>
+                </div>
+            </form>
+
+            <section class="admin-card p-6">
+                <h2 class="section-title"><i data-lucide="key-round"></i>Modifier le mot de passe admin</h2>
+                <form id="password-form" class="admin-grid md:grid-cols-[1fr_1fr_auto] items-end">
+                    <div class="admin-field">
+                        <label for="current-password">Mot de passe actuel</label>
+                        <div class="password-input-wrap">
+                            <input id="current-password" type="password" required>
+                            <button type="button" class="password-toggle" data-password-target="current-password"><i data-lucide="eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="admin-field">
+                        <label for="new-password">Nouveau mot de passe</label>
+                        <div class="password-input-wrap">
+                            <input id="new-password" type="password" minlength="8" required>
+                            <button type="button" class="password-toggle" data-password-target="new-password"><i data-lucide="eye"></i></button>
+                        </div>
+                    </div>
+                    <button class="admin-button icon-button" type="submit"><i data-lucide="shield-check"></i>Modifier</button>
+                </form>
+                <p id="password-status" class="text-sm text-gray-700 mt-3"></p>
+                <div class="border-t mt-6 pt-5">
+                    <h3 class="font-bold text-gray-800 mb-3">Code de recuperation</h3>
+                    <p class="text-sm text-gray-600 mb-3">Conservez ce code hors du site. Il sera necessaire pour reinitialiser le mot de passe en cas d'oubli.</p>
+                    <form id="recovery-code-form" class="admin-grid md:grid-cols-[1fr_auto] items-end">
+                        <div class="admin-field">
+                            <label for="new-recovery-code">Nouveau code de recuperation (12 caracteres minimum)</label>
+                            <div class="password-input-wrap">
+                                <input id="new-recovery-code" type="password" minlength="12" required>
+                                <button type="button" class="password-toggle" data-password-target="new-recovery-code"><i data-lucide="eye"></i></button>
+                            </div>
+                        </div>
+                        <button class="admin-button secondary icon-button" type="submit"><i data-lucide="shield-keyhole"></i>Configurer</button>
+                    </form>
+                    <p id="recovery-code-status" class="text-sm text-gray-700 mt-3"></p>
+                </div>
+            </section>
+
+            <section class="admin-card p-6">
+                <div class="flex items-center justify-between gap-4 mb-4">
+                    <h2 class="section-title mb-0"><i data-lucide="hand-heart"></i>Demandes des donateurs et benevoles</h2>
+                    <button id="refresh-donations" type="button" class="admin-button secondary icon-button"><i data-lucide="refresh-cw"></i>Actualiser</button>
+                </div>
+                <div id="donations-list" class="grid gap-4 text-gray-700"></div>
+            </section>
+        </section>
+    </main>
+
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Retour en haut" title="Retour en haut">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>

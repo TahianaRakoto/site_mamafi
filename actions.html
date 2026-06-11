@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos actions - MAMAFI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="min-h-screen">
+    <header class="site-header shadow-mamafi p-4 md:p-5 sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center space-x-4">
+                <img data-identity-logo src="./assets/images/mamafi-logo.png" alt="Logo MAMAFI" class="h-16 w-auto">
+                <div>
+                    <h1 data-identity-name class="text-2xl md:text-3xl font-bold text-gray-800">MAMAFI</h1>
+                    <p data-identity-tagline class="text-sm text-mamafi-green">MAlagasy MAmafy Fahombiazana Iraisana</p>
+                </div>
+            </a>
+            <nav>
+                <ul class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-gray-700 font-medium">
+                    <li><a href="index.html" class="menu-link"><i data-lucide="house"></i><span data-label="nav.home">Accueil</span></a></li>
+                    <li><a href="index.html#about" class="menu-link"><i data-lucide="users"></i><span data-label="nav.about">A propos</span></a></li>
+                    <li><a href="actions.html" class="menu-link text-mamafi-green"><i data-lucide="sprout"></i><span data-label="nav.actions">Nos actions</span></a></li>
+                    <li><a href="actualites.html" class="menu-link"><i data-lucide="newspaper"></i><span data-label="nav.news">Actualites</span></a></li>
+                    <li><a href="index.html#donation" class="menu-link"><i data-lucide="heart-handshake"></i><span data-label="nav.donation">S'engager</span></a></li>
+                </ul>
+            </nav>
+            <div class="flex items-center gap-2">
+                <button id="language-toggle" type="button" class="top-control language-control" aria-label="Afficher le site en malagasy">
+                    <span class="flag-icon flag-mg" aria-hidden="true"></span>
+                    <span class="language-code">MG</span>
+                </button>
+                <button id="dark-toggle" type="button" class="top-control"><i data-lucide="moon"></i><span>Dark</span></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="projects-hero">
+            <div class="container mx-auto px-4">
+                <span class="projects-orbit"></span>
+                <h2 id="projects-page-title">Nos actions et projets</h2>
+                <p><a href="index.html">MAMAFI</a> / <span id="projects-breadcrumb">Nos actions</span></p>
+            </div>
+        </section>
+
+        <section class="projects-intro">
+            <div class="container mx-auto px-4">
+                <p id="projects-intro-text"></p>
+                <div id="project-filters" class="project-filters"></div>
+            </div>
+        </section>
+
+        <section class="projects-list-section">
+            <div class="container mx-auto px-4">
+                <div id="projects-grid" class="projects-grid"></div>
+            </div>
+        </section>
+
+        <section id="project-detail-section" class="project-detail-section hidden">
+            <div class="container mx-auto px-4">
+                <button id="close-project-detail" type="button" class="detail-close"><i data-lucide="x"></i><span>Fermer</span></button>
+                <div id="project-detail-page"></div>
+            </div>
+        </section>
+
+        <section class="project-engagement">
+            <div class="container mx-auto px-4 text-center">
+                <h2 id="engagement-title">Agissons ensemble</h2>
+                <p id="engagement-text">Soutenez les actions de MAMAFI en devenant donateur ou benevole.</p>
+                <a href="index.html#donation" class="hero-action"><i data-lucide="hand-heart"></i><span id="engagement-button">Je m'engage</span></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2026 MAMAFI. Tous droits reserves.</p>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Retour en haut" title="Retour en haut">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script src="assets/js/actions.js"></script>
+</body>
+</html>

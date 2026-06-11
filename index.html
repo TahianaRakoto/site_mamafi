@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAMAFI - Malagasy Mamafy Fahombiazana Iraisana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="flex flex-col min-h-screen">
+    <header class="site-header shadow-mamafi p-4 md:p-5 sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-4">
+                <img data-identity-logo src="./assets/images/mamafi-logo.png" alt="Logo MAMAFI" class="h-16 w-auto">
+                <div>
+                    <h1 data-identity-name class="text-2xl md:text-3xl font-bold text-gray-800">MAMAFI</h1>
+                    <p data-identity-tagline class="text-sm md:text-base text-mamafi-green">MAlagasy MAmafy Fahombiazana Iraisana</p>
+                </div>
+            </div>
+            <nav>
+                <ul class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-gray-700 font-medium">
+                    <li><a href="#" class="menu-link hover:text-mamafi-green transition duration-300"><i data-lucide="house"></i><span data-label="nav.home">Accueil</span></a></li>
+                    <li><a href="#about" class="menu-link hover:text-mamafi-green transition duration-300"><i data-lucide="users"></i><span data-label="nav.about">A propos</span></a></li>
+                    <li><a href="actions.html" class="menu-link hover:text-mamafi-green transition duration-300"><i data-lucide="sprout"></i><span data-label="nav.actions">Nos actions</span></a></li>
+                    <li><a href="actualites.html" class="menu-link hover:text-mamafi-green transition duration-300"><i data-lucide="newspaper"></i><span data-label="nav.news">Actualites</span></a></li>
+                    <li><a href="#donation" class="menu-link hover:text-mamafi-green transition duration-300"><i data-lucide="heart-handshake"></i><span data-label="nav.donation">Dons</span></a></li>
+                    <li><a href="#contact" class="menu-link hover:text-mamafi-green transition duration-300"><i data-lucide="mail"></i><span data-label="nav.contact">Contact</span></a></li>
+                </ul>
+            </nav>
+            <div class="flex items-center gap-2">
+                <button id="language-toggle" type="button" class="top-control language-control" aria-label="Afficher le site en malagasy" title="Afficher le site en malagasy">
+                    <span class="flag-icon flag-mg" aria-hidden="true"><span></span></span>
+                    <span class="language-code">MG</span>
+                </button>
+                <button id="dark-toggle" type="button" class="top-control" aria-label="Changer de theme"><i data-lucide="moon"></i><span>Dark</span></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section class="hero-carousel">
+            <div id="hero-images"></div>
+            <div class="hero-overlay text-white py-16 md:py-24">
+                <div class="container mx-auto px-4">
+                    <h2 data-content="hero.title" class="text-3xl md:text-5xl font-extrabold mb-4 animate-fade-in-up">Ensemble pour un Madagascar meilleur</h2>
+                    <p data-content="hero.subtitle" class="text-lg md:text-xl mb-8 opacity-90 animate-fade-in-up delay-200">Contribuer au developpement culturel, social, environnemental et economique de Madagascar.</p>
+                    <a href="actions.html" data-content="hero.button" class="bg-white text-mamafi-green font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 shadow-lg inline-block animate-fade-in-up delay-400">Decouvrir nos actions</a>
+                    <div class="hero-actions animate-fade-in-up delay-400">
+                        <a href="#donation" class="hero-action"><i data-lucide="heart-handshake"></i><span data-label="hero.donor">Je deviens donateur</span></a>
+                        <a href="#donation" class="hero-action hero-action-alt"><i data-lucide="hand-heart"></i><span data-label="hero.volunteer">Je deviens benevole</span></a>
+                    </div>
+                    <p id="hero-caption" class="hero-caption animate-fade-in-up delay-600"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 md:py-20 section-soft">
+            <div class="container mx-auto px-4">
+                <h3 data-content="about.title" class="text-3xl font-bold text-center text-gray-800 mb-10 animate-fade-in">Qui sommes-nous ?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div class="text-gray-700 leading-relaxed animate-fade-in delay-200">
+                        <p data-content="about.text1" class="mb-4"></p>
+                        <p data-content="about.text2" class="mb-4"></p>
+                    </div>
+                    <figure class="flex flex-col gap-3 justify-center animate-fade-in delay-400">
+                        <img id="about-image" src="./assets/images/4.jpg" alt="MAMAFI" class="rounded-lg shadow-lg w-full max-w-md mx-auto card-image">
+                        <figcaption id="about-caption" class="image-caption text-center"></figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="impact-band">
+            <div id="impact-list" class="container mx-auto px-4 impact-grid"></div>
+        </section>
+
+        <section id="actions" class="py-16 md:py-20 section-surface">
+            <div class="container mx-auto px-4">
+                <h3 data-content="actions.title" class="text-3xl font-bold text-center text-gray-800 mb-10 animate-fade-in">Nos domaines d'action</h3>
+                <div id="actions-list" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+                <div id="action-detail" class="action-detail animate-fade-in-up"></div>
+            </div>
+        </section>
+
+        <section id="contents" class="py-16 md:py-20 section-soft">
+            <div class="container mx-auto px-4">
+                <h3 data-label="news.title" class="text-3xl font-bold text-center text-gray-800 mb-5 animate-fade-in">Actualites et contenus</h3>
+                <div id="social-links" class="social-links"></div>
+                <div id="content-list" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+                <div class="text-center mt-10">
+                    <a href="actualites.html" class="hero-action"><i data-lucide="newspaper"></i><span data-label="news.all">Voir toutes les actualites</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="donation" class="py-16 md:py-20 bg-mamafi-green text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h3 data-content="join.title" class="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Rejoignez MAMAFI ou faites un don !</h3>
+                    <p data-content="join.subtitle" class="text-lg opacity-90 animate-fade-in delay-200"></p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    <div class="donation-panel p-6 md:p-8 animate-fade-in-up">
+                        <h4 data-label="donation.methods" class="text-2xl font-bold mb-4">Moyens de don</h4>
+                        <div id="donation-methods" class="grid gap-4"></div>
+                    </div>
+
+                    <form id="donation-form" class="donation-panel p-6 md:p-8 grid gap-4 animate-fade-in-up delay-200">
+                        <h4 data-label="donation.formTitle" class="text-2xl font-bold">Devenir donateur ou benevole</h4>
+                        <div class="form-field">
+                            <label for="supportType" data-label="donation.supportType">Je souhaite devenir</label>
+                            <select id="supportType" name="supportType" required>
+                                <option value="donateur" data-label="donation.donor">Donateur</option>
+                                <option value="benevole" data-label="donation.volunteer">Benevole</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="donorName" data-label="donation.name">Nom complet</label>
+                            <input id="donorName" name="name" type="text" required>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-field">
+                                <label for="donorEmail">Email</label>
+                                <input id="donorEmail" name="email" type="email" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="donorPhone" data-label="donation.phone">Telephone</label>
+                                <input id="donorPhone" name="phone" type="tel">
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label for="donorMessage" data-label="donation.message">Message</label>
+                            <textarea id="donorMessage" name="message"></textarea>
+                        </div>
+                        <button type="submit" data-label="donation.submit" class="bg-mamafi-green text-white font-bold py-3 px-6 rounded-md hover:bg-green-700 transition duration-300">Envoyer ma demande</button>
+                        <p id="donation-status" class="text-sm min-h-5"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 md:py-20 section-soft">
+            <div class="container mx-auto px-4">
+                <h3 data-content="contact.title" class="text-3xl font-bold text-center text-gray-800 mb-10 animate-fade-in">Nous contacter</h3>
+                <div class="max-w-2xl mx-auto donation-panel p-8 animate-fade-in-up delay-200">
+                    <p data-content="contact.intro" class="mb-6 text-center"></p>
+                    <div class="space-y-4">
+                        <p class="flex items-center justify-center md:justify-start">
+                            <span class="h-6 w-8 mr-2 text-mamafi-green font-bold">Adr.</span>
+                            <span data-content="contact.address"></span>
+                        </p>
+                        <p class="flex items-center justify-center md:justify-start">
+                            <span class="h-6 w-8 mr-2 text-mamafi-green font-bold">Mail</span>
+                            <span data-content="contact.email"></span>
+                        </p>
+                        <p class="flex items-center justify-center md:justify-start">
+                            <span class="h-6 w-8 mr-2 text-mamafi-green font-bold">Tel.</span>
+                            <span data-content="contact.phone"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="partners" class="partners-section">
+            <div class="container mx-auto px-4">
+                <h3 data-content="partners.title" class="section-heading text-center">Nos partenaires</h3>
+                <div class="partners-window">
+                    <div id="partners-list" class="partners-track"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="intervention" class="intervention-section">
+            <div class="container mx-auto px-4">
+                <div class="intervention-layout">
+                    <div class="intervention-copy">
+                        <span class="section-kicker">MAMAFI Madagascar</span>
+                        <h3 data-content="intervention.title" class="section-heading">Nos zones d'intervention</h3>
+                        <p data-content="intervention.intro" class="intervention-intro"></p>
+                        <div id="zone-list" class="zone-list"></div>
+                    </div>
+                    <div class="map-shell">
+                        <div id="madagascar-map" aria-label="Carte des zones d'intervention de MAMAFI"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; <span data-content="footer.year">2025</span> MAMAFI - <span data-label="footer.rights">Réalisation : Aro Company</span></p>
+            <p class="text-sm mt-2">
+                <a
+                    href="https://www.facebook.com/AroKompany"
+                    data-content="footer.legal"
+                    class="footer-credit"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Réalisation par Aro Kompany</a>
+            </p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" data-label="footer.privacy" class="text-gray-400 hover:text-white transition duration-300">Politique de confidentialite</a>
+                <a href="#" data-label="footer.legalLink" class="text-gray-400 hover:text-white transition duration-300">Mentions legales</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Retour en haut" title="Retour en haut">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

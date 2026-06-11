@@ -1,0 +1,24 @@
+# Donnees sensibles de l'administration
+data/settings.json
+data/donations.json
+
+# Variables d'environnement et secrets
+.env
+.env.*
+!.env.example
+
+# Dependances Node.js
+node_modules/
+
+# Journaux et fichiers temporaires
+*.log
+logs/
+tmp/
+temp/
+
+# Fichiers des editeurs et du systeme
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

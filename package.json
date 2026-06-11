@@ -1,0 +1,9 @@
+{
+  "name": "mamafi-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site web et backend simple pour l'association MAMAFI.",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

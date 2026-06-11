@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualites - MAMAFI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="min-h-screen">
+    <header class="site-header shadow-mamafi p-4 md:p-5 sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center space-x-4">
+                <img data-identity-logo src="./assets/images/mamafi-logo.png" alt="Logo MAMAFI" class="h-16 w-auto">
+                <div>
+                    <h1 data-identity-name class="text-2xl md:text-3xl font-bold text-gray-800">MAMAFI</h1>
+                    <p data-identity-tagline class="text-sm text-mamafi-green">MAlagasy MAmafy Fahombiazana Iraisana</p>
+                </div>
+            </a>
+            <nav>
+                <ul class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-gray-700 font-medium">
+                    <li><a href="index.html" class="menu-link"><i data-lucide="house"></i><span data-label="nav.home">Accueil</span></a></li>
+                    <li><a href="index.html#about" class="menu-link"><i data-lucide="users"></i><span data-label="nav.about">A propos</span></a></li>
+                    <li><a href="actions.html" class="menu-link"><i data-lucide="sprout"></i><span data-label="nav.actions">Nos actions</span></a></li>
+                    <li><a href="actualites.html" class="menu-link text-mamafi-green"><i data-lucide="newspaper"></i><span data-label="nav.news">Actualites</span></a></li>
+                    <li><a href="index.html#donation" class="menu-link"><i data-lucide="heart-handshake"></i><span data-label="nav.donation">S'engager</span></a></li>
+                </ul>
+            </nav>
+            <div class="flex items-center gap-2">
+                <button id="language-toggle" type="button" class="top-control language-control" aria-label="Afficher le site en malagasy">
+                    <span class="flag-icon flag-mg" aria-hidden="true"></span>
+                    <span class="language-code">MG</span>
+                </button>
+                <button id="dark-toggle" type="button" class="top-control"><i data-lucide="moon"></i><span>Dark</span></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="news-hero">
+            <div class="news-hero-pattern" aria-hidden="true"></div>
+            <div class="container mx-auto px-4 news-hero-content">
+                <span class="news-hero-mark"><i data-lucide="newspaper"></i></span>
+                <p class="news-kicker">MAMAFI Madagascar</p>
+                <h2 id="news-page-title">Actualites</h2>
+                <p class="news-breadcrumb"><a href="index.html">MAMAFI</a><i data-lucide="chevron-right"></i><span id="news-breadcrumb">Actualites</span></p>
+            </div>
+        </section>
+
+        <section class="news-intro-section">
+            <div class="container mx-auto px-4 news-intro-layout">
+                <div>
+                    <p class="news-kicker" id="news-intro-kicker">Notre journal</p>
+                    <p id="news-intro-text" class="news-intro-text"></p>
+                </div>
+                <div class="news-filter-wrap">
+                    <label for="news-filter" id="news-filter-label">Filtrer les actualites</label>
+                    <select id="news-filter"></select>
+                </div>
+            </div>
+        </section>
+
+        <section id="featured-news-section" class="featured-news-section">
+            <div class="container mx-auto px-4">
+                <div id="featured-news"></div>
+            </div>
+        </section>
+
+        <section class="news-list-section">
+            <div class="container mx-auto px-4">
+                <div class="news-section-heading">
+                    <div>
+                        <p class="news-kicker" id="news-list-kicker">A la une de MAMAFI</p>
+                        <h2 id="news-list-title">Toutes nos actualites</h2>
+                    </div>
+                    <span id="news-count" class="news-count"></span>
+                </div>
+                <div id="news-grid" class="news-grid"></div>
+                <p id="news-empty" class="news-empty hidden"></p>
+            </div>
+        </section>
+
+        <section id="news-detail-section" class="news-detail-section hidden">
+            <div class="container mx-auto px-4">
+                <button id="close-news-detail" type="button" class="detail-close"><i data-lucide="x"></i><span>Fermer</span></button>
+                <article id="news-detail"></article>
+            </div>
+        </section>
+
+        <section class="news-social-section">
+            <div class="container mx-auto px-4 news-social-layout">
+                <div>
+                    <p class="news-kicker">MAMAFI en direct</p>
+                    <h2 id="social-title">Suivez nos actions</h2>
+                    <p id="social-text">Retrouvez les nouvelles de l'association sur nos reseaux sociaux.</p>
+                </div>
+                <div id="news-social-links" class="news-social-links"></div>
+            </div>
+        </section>
+
+        <section class="partners-section">
+            <div class="container mx-auto px-4">
+                <h2 id="news-partners-title" class="section-heading text-center">Nos partenaires</h2>
+                <div id="news-partners" class="partners-track news-partners-track"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; <span id="footer-year">2026</span> MAMAFI. Tous droits reserves.</p>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Retour en haut" title="Retour en haut">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script src="assets/js/actualites.js"></script>
+</body>
+</html>

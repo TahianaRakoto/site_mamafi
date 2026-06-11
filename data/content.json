@@ -1,0 +1,590 @@
+{
+  "identity": {
+    "name": "MAMAFI",
+    "tagline": "MAlagasy MAmafy Fahombiazana Iraisana",
+    "logo": "./assets/images/mamafi-logo.png"
+  },
+  "styles": {
+    "primaryColor": "#20a840",
+    "accentColor": "#0b0f0c",
+    "backgroundColor": "#f7fbf8",
+    "fontFamily": "Roboto",
+    "heroOverlay": "0.55"
+  },
+  "hero": {
+    "title": {
+      "fr": "Ensemble pour un Madagascar meilleur",
+      "mg": "Miara-manorina an'i Madagasikara tsaratsara kokoa"
+    },
+    "subtitle": {
+      "fr": "Contribuer au developpement culturel, social, environnemental et economique de Madagascar.",
+      "mg": "Mandray anjara amin'ny fampandrosoana ara-kolontsaina, sosialy, tontolo iainana ary toekarena eto Madagasikara."
+    },
+    "button": {
+      "fr": "Decouvrir nos actions",
+      "mg": "Hijery ny asa ataonay"
+    },
+    "images": [
+      {
+        "id": "hero-1",
+        "url": "./assets/images/1.jpg",
+        "caption": {
+          "fr": "Actions solidaires avec les communautes",
+          "mg": "Asa iombonana miaraka amin'ny fokonolona"
+        },
+        "display": {
+          "height": 240,
+          "positionX": 50,
+          "positionY": 50,
+          "brightness": 100,
+          "contrast": 100,
+          "saturation": 100,
+          "rotation": 0
+        }
+      },
+      {
+        "id": "hero-2",
+        "url": "./assets/images/2.jpg",
+        "caption": {
+          "fr": "Education et transmission",
+          "mg": "Fanabeazana sy fampitana fahalalana"
+        },
+        "display": {
+          "height": 240,
+          "positionX": 50,
+          "positionY": 50,
+          "brightness": 100,
+          "contrast": 100,
+          "saturation": 100,
+          "rotation": 0
+        }
+      },
+      {
+        "id": "hero-3",
+        "url": "./assets/images/3.jpg",
+        "caption": {
+          "fr": "Protection de l'environnement",
+          "mg": "Fiarovana ny tontolo iainana"
+        },
+        "display": {
+          "height": 240,
+          "positionX": 50,
+          "positionY": 50,
+          "brightness": 100,
+          "contrast": 100,
+          "saturation": 100,
+          "rotation": 0
+        }
+      }
+    ]
+  },
+  "about": {
+    "title": {
+      "fr": "Qui sommes-nous ?",
+      "mg": "Iza izahay ?"
+    },
+    "text1": {
+      "fr": "MAlagasy MAmafy Fahombiazana Iraisana (MAMAFI) est une association regie par l'ordonnance 60-133 du 3 octobre 1960. Notre mission est de contribuer au developpement durable de Madagascar a travers des actions concretes dans plusieurs domaines cles.",
+      "mg": "MAlagasy MAmafy Fahombiazana Iraisana (MAMAFI) dia fikambanana miasa araka ny didy hitsivolana 60-133 tamin'ny 3 oktobra 1960."
+    },
+    "text2": {
+      "fr": "Nous croyons en la force de l'action collective et de la solidarite pour batir un avenir prospere pour tous les Malgaches.",
+      "mg": "Mino ny herin'ny fiaraha-mientana sy ny firaisankina izahay mba hanorenana hoavy mamiratra ho an'ny Malagasy rehetra."
+    },
+    "image": {
+      "url": "./assets/images/4.jpg",
+      "caption": {
+        "fr": "MAMAFI agit avec les communautes locales.",
+        "mg": "MAMAFI miara-miasa amin'ny vondrom-piarahamonina."
+      },
+      "display": {
+        "height": 240,
+        "positionX": 50,
+        "positionY": 50,
+        "brightness": 100,
+        "contrast": 100,
+        "saturation": 100,
+        "rotation": 0
+      }
+    }
+  },
+  "impact": [
+    {
+      "id": "impact-projects",
+      "value": "3",
+      "label": {
+        "fr": "domaines d'action",
+        "mg": "sehatra iasana"
+      }
+    },
+    {
+      "id": "impact-communities",
+      "value": "10+",
+      "label": {
+        "fr": "communautes accompagnees",
+        "mg": "vondrom-piarahamonina tohanana"
+      }
+    },
+    {
+      "id": "impact-volunteers",
+      "value": "25+",
+      "label": {
+        "fr": "benevoles mobilises",
+        "mg": "mpilatsaka an-tsitrapo"
+      }
+    }
+  ],
+  "actions": {
+    "title": {
+      "fr": "Nos domaines d'action",
+      "mg": "Sehatra iasanay"
+    },
+    "pageTitle": {
+      "fr": "Nos actions et projets",
+      "mg": "Asa sy tetikasanay"
+    },
+    "intro": {
+      "fr": "Les actions de MAMAFI repondent aux besoins concrets des communautes dans les domaines de l'education, du numerique et de l'environnement. Chaque projet est construit avec les acteurs locaux pour produire des resultats durables.",
+      "mg": "Ny asan'ny MAMAFI dia mamaly ny filan'ny vondrom-piarahamonina amin'ny fanabeazana, ny nomerika ary ny tontolo iainana. Ny tetikasa tsirairay dia iarahana manorina amin'ny mpiara-miombon'antoka eny ifotony."
+    },
+    "items": [
+      {
+        "id": "education",
+        "category": "education",
+        "location": "Antsirabe et zones rurales",
+        "period": "Programme permanent",
+        "status": "En cours",
+        "title": {
+          "fr": "Education",
+          "mg": "Fanabeazana"
+        },
+        "description": {
+          "fr": "Nous formons les maitres aux methodes de pedagogie active afin de renforcer le systeme educatif malgache.",
+          "mg": "Manofana mpampianatra amin'ny fomba fampianarana mavitrika izahay mba hanamafisana ny rafi-panabeazana malagasy."
+        },
+        "details": {
+          "fr": "Ce domaine accompagne les enseignants, les familles et les jeunes par des ateliers, des supports pedagogiques et des actions de suivi. L'objectif est d'ameliorer les apprentissages, l'autonomie et la reussite scolaire.",
+          "mg": "Ity sehatra ity dia manohana ny mpampianatra, ny ray aman-dreny ary ny tanora amin'ny atrikasa sy fitaovana pedagogika. Ny tanjona dia ny hanatsara ny fianarana sy ny fahombiazana an-tsekoly."
+        },
+        "objectives": {
+          "fr": "Renforcer les competences des enseignants, ameliorer les pratiques pedagogiques et favoriser la reussite des enfants.",
+          "mg": "Hanamafy ny fahaizan'ny mpampianatra, hanatsara ny fomba fampianarana ary hampiroborobo ny fahombiazan'ny ankizy."
+        },
+        "results": {
+          "fr": "Des ateliers pratiques, des supports adaptes et un accompagnement de proximite pour les equipes educatives.",
+          "mg": "Atrikasa azo ampiharina, fitaovana mifanaraka amin'ny filana ary fanohanana akaiky ny ekipan'ny fanabeazana."
+        },
+        "imageUrl": "./assets/images/2.jpg",
+        "imageDisplay": {
+          "height": 240,
+          "positionX": 50,
+          "positionY": 50,
+          "brightness": 100,
+          "contrast": 100,
+          "saturation": 100,
+          "rotation": 0
+        },
+        "caption": {
+          "fr": "Atelier de formation et d'accompagnement scolaire.",
+          "mg": "Atrikasa fanofanana sy fanohanana ny fianarana."
+        },
+        "gallery": [
+          {
+            "id": "education-1",
+            "url": "./assets/images/2.jpg",
+            "caption": {
+              "fr": "Formation des enseignants",
+              "mg": "Fanofanana mpampianatra"
+            },
+            "display": {
+              "height": 240,
+              "positionX": 50,
+              "positionY": 50,
+              "brightness": 100,
+              "contrast": 100,
+              "saturation": 100,
+              "rotation": 0
+            }
+          },
+          {
+            "id": "education-2",
+            "url": "./assets/images/5.jpg",
+            "caption": {
+              "fr": "Activites avec les jeunes",
+              "mg": "Hetsika miaraka amin'ny tanora"
+            },
+            "display": {
+              "height": 240,
+              "positionX": 50,
+              "positionY": 50,
+              "brightness": 100,
+              "contrast": 100,
+              "saturation": 100,
+              "rotation": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "formation-numerique",
+        "category": "numerique",
+        "location": "Communautes rurales",
+        "period": "2025 - 2026",
+        "status": "En developpement",
+        "title": {
+          "fr": "Women Solar Digital Empowerment",
+          "mg": "Fanofanana nomerika"
+        },
+        "description": {
+          "fr": "Nous facilitons l'acces a l'information et a la formation numerique pour les populations rurales.",
+          "mg": "Manamora ny fidirana amin'ny vaovao sy ny fanofanana nomerika ho an'ny mponina ambanivohitra izahay."
+        },
+        "details": {
+          "fr": "MAMAFI developpe des parcours de formation simples, pratiques et adaptes aux besoins locaux: initiation au numerique, outils de communication, recherche d'information et apprentissage autonome.",
+          "mg": "MAMAFI mamolavola fiofanana mora ampiharina mifanaraka amin'ny filana eny ifotony: fampidirana amin'ny nomerika, fitaovam-pifandraisana ary fikarohana vaovao."
+        },
+        "objectives": {
+          "fr": "Reduire la fracture numerique et rendre l'information, la formation et les outils de communication accessibles.",
+          "mg": "Hampihena ny elanelana nomerika ary hanamora ny fahazoana vaovao, fiofanana ary fitaovam-pifandraisana."
+        },
+        "results": {
+          "fr": "Des parcours d'initiation simples et des ressources utilisables avec des equipements accessibles.",
+          "mg": "Fiofanana fototra mora arahina sy loharano azo ampiasaina amin'ny fitaovana mora idirana."
+        },
+        "imageUrl": "./assets/uploads/1780990928766-1-f1fba1b9.jpg",
+        "imageDisplay": {
+          "height": 230,
+          "positionX": 95,
+          "positionY": 54,
+          "brightness": 111,
+          "contrast": 121,
+          "saturation": 120,
+          "rotation": 0
+        },
+        "caption": {
+          "fr": "Apprendre avec des outils accessibles.",
+          "mg": "Mianatra amin'ny fitaovana mora idirana."
+        },
+        "gallery": [
+          {
+            "id": "numerique-1",
+            "url": "./assets/images/3.jpg",
+            "caption": {
+              "fr": "Formation pratique",
+              "mg": "Fanofanana azo ampiharina"
+            },
+            "display": {
+              "height": 240,
+              "positionX": 50,
+              "positionY": 50,
+              "brightness": 100,
+              "contrast": 100,
+              "saturation": 100,
+              "rotation": 0
+            }
+          },
+          {
+            "id": "numerique-2",
+            "url": "./assets/images/1.jpg",
+            "caption": {
+              "fr": "Information pour tous",
+              "mg": "Vaovao ho an'ny rehetra"
+            },
+            "display": {
+              "height": 240,
+              "positionX": 50,
+              "positionY": 50,
+              "brightness": 100,
+              "contrast": 100,
+              "saturation": 100,
+              "rotation": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "environnement",
+        "category": "environnement",
+        "location": "Region Vakinankaratra",
+        "period": "Campagnes annuelles",
+        "status": "En cours",
+        "title": {
+          "fr": "Environnement",
+          "mg": "Tontolo iainana"
+        },
+        "description": {
+          "fr": "Nous sensibilisons aux enjeux climatiques et menons des actions de reboisement et de restauration.",
+          "mg": "Mampahafantatra ny olan'ny toetrandro izahay ary manao asa fambolen-kazo sy fanarenana."
+        },
+        "details": {
+          "fr": "Les actions environnementales portent sur la sensibilisation, la restauration des ecosystemes forestiers, la protection de la biodiversite et l'engagement citoyen autour des ressources naturelles.",
+          "mg": "Ny asa momba ny tontolo iainana dia ahitana fanentanana, fanarenana ala, fiarovana ny harena voajanahary ary fandraisana andraikitry ny olom-pirenena."
+        },
+        "objectives": {
+          "fr": "Proteger la biodiversite, restaurer les ecosystemes et mobiliser les citoyens autour des ressources naturelles.",
+          "mg": "Hiaro ny harena voajanahary, hanarina ny tontolo iainana ary hampandray anjara ny olom-pirenena."
+        },
+        "results": {
+          "fr": "Des actions de sensibilisation, de reboisement et de suivi communautaire des espaces restaures.",
+          "mg": "Fanentanana, fambolen-kazo ary fanaraha-maso iarahan'ny fokonolona ny faritra naverina tamin'ny laoniny."
+        },
+        "imageUrl": "./assets/uploads/1780991084965-IMG_20250221_103312_431-3a4b4a91.jpg",
+        "imageDisplay": {
+          "height": 240,
+          "positionX": 48,
+          "positionY": 66,
+          "brightness": 100,
+          "contrast": 124,
+          "saturation": 122,
+          "rotation": 0
+        },
+        "caption": {
+          "fr": "Reboisement et protection des ecosystemes.",
+          "mg": "Fambolen-kazo sy fiarovana ny tontolo voajanahary."
+        },
+        "gallery": [
+          {
+            "id": "environnement-1",
+            "url": "./assets/images/1.jpg",
+            "caption": {
+              "fr": "Mobilisation environnementale",
+              "mg": "Fanentanana momba ny tontolo iainana"
+            },
+            "display": {
+              "height": 240,
+              "positionX": 50,
+              "positionY": 50,
+              "brightness": 100,
+              "contrast": 100,
+              "saturation": 100,
+              "rotation": 0
+            }
+          },
+          {
+            "id": "environnement-2",
+            "url": "./assets/images/4.jpg",
+            "caption": {
+              "fr": "Restauration locale",
+              "mg": "Fanarenana eny ifotony"
+            },
+            "display": {
+              "height": 240,
+              "positionX": 50,
+              "positionY": 50,
+              "brightness": 100,
+              "contrast": 100,
+              "saturation": 100,
+              "rotation": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "news": {
+    "title": {
+      "fr": "Actualites",
+      "mg": "Vaovao"
+    },
+    "intro": {
+      "fr": "Restez informes des actions de MAMAFI, de la vie de l'association et des projets menes avec les communautes.",
+      "mg": "Araho eto ny vaovao momba ny asan'ny MAMAFI, ny fiainan'ny fikambanana ary ny tetikasa iarahana amin'ny vondrom-piarahamonina."
+    }
+  },
+  "contents": [
+    {
+      "id": "projets-communautaires",
+      "category": "Vie associative",
+      "date": "2026-06-09",
+      "featured": true,
+      "title": {
+        "fr": "Projets communautaires",
+        "mg": "Tetikasa ifotony"
+      },
+      "description": {
+        "fr": "Suivez les actions menees par MAMAFI et les initiatives portees avec les communautes locales.",
+        "mg": "Araho ny asa ataon'i MAMAFI sy ny hetsika iarahana amin'ny vondrom-piarahamonina."
+      },
+      "details": {
+        "fr": "MAMAFI construit ses projets au plus pres des besoins locaux. Les rencontres avec les communautes permettent d'identifier les priorites, de preparer les activites et d'assurer un suivi durable des actions engagees.",
+        "mg": "MAMAFI dia mamolavola ny tetikasany araka ny filana eny ifotony. Ny fihaonana amin'ny vondrom-piarahamonina dia ahafahana mamantatra ny laharam-pahamehana sy manara-maso maharitra ny asa."
+      },
+      "imageUrl": "./assets/images/5.jpg",
+      "imageDisplay": {
+        "height": 240,
+        "positionX": 50,
+        "positionY": 50,
+        "brightness": 100,
+        "contrast": 100,
+        "saturation": 100,
+        "rotation": 0
+      },
+      "caption": {
+        "fr": "Vie associative et initiatives locales.",
+        "mg": "Fiainam-pikambanana sy hetsika eny ifotony."
+      }
+    },
+    {
+      "id": "education-proximite",
+      "category": "Autour des projets",
+      "date": "2026-05-22",
+      "featured": false,
+      "title": {
+        "fr": "L'education au coeur de nos actions",
+        "mg": "Ny fanabeazana no ivon'ny asanay"
+      },
+      "description": {
+        "fr": "Des activites de proximite pour accompagner les enseignants, les familles et les jeunes.",
+        "mg": "Hetsika eny ifotony hanohanana ny mpampianatra, ny fianakaviana ary ny tanora."
+      },
+      "details": {
+        "fr": "Les actions educatives de MAMAFI associent ateliers pratiques, ressources pedagogiques et accompagnement des acteurs locaux. Cette approche favorise la transmission des connaissances et l'autonomie des jeunes.",
+        "mg": "Ny asa fanabeazana ataon'ny MAMAFI dia mampifandray atrikasa, fitaovana pedagogika ary fanohanana ireo mpisehatra eny ifotony."
+      },
+      "imageUrl": "./assets/images/2.jpg",
+      "imageDisplay": {
+        "height": 240,
+        "positionX": 50,
+        "positionY": 50,
+        "brightness": 100,
+        "contrast": 100,
+        "saturation": 100,
+        "rotation": 0
+      },
+      "caption": {
+        "fr": "Ateliers et accompagnement educatif.",
+        "mg": "Atrikasa sy fanohanana ara-panabeazana."
+      }
+    },
+    {
+      "id": "numerique-rural",
+      "category": "Formation numerique",
+      "date": "2026-04-18",
+      "featured": false,
+      "title": {
+        "fr": "Le numerique accessible en milieu rural",
+        "mg": "Nomerika mora idirana eny ambanivohitra"
+      },
+      "description": {
+        "fr": "Des parcours simples et pratiques pour faciliter l'acces a l'information et aux outils numeriques.",
+        "mg": "Fiofanana tsotra sy azo ampiharina hanamorana ny fahazoana vaovao sy fitaovana nomerika."
+      },
+      "details": {
+        "fr": "Les formations proposent une initiation progressive aux outils de communication, a la recherche d'information et aux usages utiles du numerique dans la vie quotidienne.",
+        "mg": "Ny fiofanana dia mampahafantatra tsikelikely ny fitaovam-pifandraisana, ny fikarohana vaovao ary ny fampiasana nomerika andavanandro."
+      },
+      "imageUrl": "./assets/images/3.jpg",
+      "imageDisplay": {
+        "height": 240,
+        "positionX": 50,
+        "positionY": 50,
+        "brightness": 100,
+        "contrast": 100,
+        "saturation": 100,
+        "rotation": 0
+      },
+      "caption": {
+        "fr": "Formation numerique de proximite.",
+        "mg": "Fanofanana nomerika eny ifotony."
+      }
+    }
+  ],
+  "socials": {
+    "facebook": "https://facebook.com/profile.php?id=61579050938486",
+    "instagram": "https://instagram.com/",
+    "youtube": "https://youtube.com/",
+    "linkedin": "https://linkedin.com/"
+  },
+  "partners": {
+    "title": {
+      "fr": "Nos partenaires",
+      "mg": "Mpiara-miombon'antoka"
+    },
+    "items": [
+      {
+        "id": "partner-communities",
+        "name": "Honnold Foundation",
+        "logo": "https://images.squarespace-cdn.com/content/v1/546142c8e4b054a6f8697e49/1524596718428-10UUWGUS20QDM9KKB0FO/Horizontal+White+Color+Logo.png?format=1500w",
+        "url": "https://www.honnoldfoundation.org/#mission"
+      },
+      {
+        "id": "partner-schools",
+        "name": "ONG DEFI",
+        "logo": "https://www.ongdefi.org/wp-content/uploads/2024/03/logo_defi.svg",
+        "url": "https://www.ongdefi.org/"
+      }
+    ]
+  },
+  "intervention": {
+    "title": {
+      "fr": "Nos zones d'intervention",
+      "mg": "Faritra iasanay"
+    },
+    "intro": {
+      "fr": "MAMAFI agit au plus proche des communautes afin de construire des projets adaptes aux realites locales.",
+      "mg": "MAMAFI dia miasa akaikin'ny vondrom-piarahamonina mba hamolavola tetikasa mifanaraka amin'ny zava-misy eny ifotony."
+    },
+    "zones": [
+      {
+        "id": "antsirabe",
+        "name": "Bureau MAMAFI - Antsirabe",
+        "latitude": -19.8670625,
+        "longitude": 47.0059375,
+        "description": {
+          "fr": "Bureau de MAMAFI, Antsirabe.",
+          "mg": "Biraon'ny MAMAFI , Antsirabe."
+        }
+      },
+      {
+        "id": "zone-1780989343207-2de61f40c43328",
+        "name": "Antanety Nord",
+        "latitude": -19.501,
+        "longitude": 46.339,
+        "description": {
+          "fr": "Antanety Nord, Mandoto",
+          "mg": "Antanety Nord, Mandoto"
+        }
+      }
+    ]
+  },
+  "join": {
+    "title": {
+      "fr": "Rejoignez MAMAFI ou faites un don !",
+      "mg": "Midira ao amin'ny MAMAFI na manaova fanomezana !"
+    },
+    "subtitle": {
+      "fr": "Votre soutien est essentiel pour la realisation de nos projets. Devenez membre actif ou faites un don pour aider Madagascar.",
+      "mg": "Zava-dehibe ny fanohananao amin'ny fanatanterahana ny tetikasanay. Midira ho mpikambana na manaova fanomezana hanampiana an'i Madagasikara."
+    }
+  },
+  "donation": {
+    "methods": [
+      {
+        "id": "mobile-money",
+        "name": "MVola",
+        "details": "Don par Mvola : 034 XX XXX XX",
+        "logo": "./assets/payment/mvola.jpg"
+      }
+    ]
+  },
+  "contact": {
+    "title": {
+      "fr": "Nous contacter",
+      "mg": "Hifandray aminay"
+    },
+    "intro": {
+      "fr": "N'hesitez pas a nous contacter pour toute question ou information.",
+      "mg": "Aza misalasala mifandray aminay raha mila fanazavana."
+    },
+    "address": "Bureau MAMAFI, 108C130 Andrefan'Ivohitra, Antsirabe 110, Madagascar",
+    "email": "contactmamafi@gmail.com",
+    "phone": "+261 20 76 667 53"
+  },
+  "footer": {
+    "year": "2026",
+    "legal": {
+      "fr": "Réalisation par Aro Kompany",
+      "mg": "Novolavolain'ny  Aro Kompany"
+    }
+  }
+}
