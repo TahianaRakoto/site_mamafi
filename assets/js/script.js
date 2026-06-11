@@ -61,12 +61,44 @@ document.addEventListener('DOMContentLoaded', () => {
             'footer.legalLink': 'Filazana ara-dalana',
             'theme.dark': 'Maizina',
             'theme.light': 'Mazava'
+        },
+        en: {
+            'nav.home': 'Home',
+            'nav.about': 'About us',
+            'nav.actions': 'Our work',
+            'nav.news': 'News',
+            'nav.donation': 'Support us',
+            'nav.contact': 'Contact',
+            'hero.donor': 'Become a donor',
+            'hero.volunteer': 'Become a volunteer',
+            'news.title': 'News and stories',
+            'news.all': 'View all news',
+            'donation.methods': 'Donation methods',
+            'donation.formTitle': 'Become a donor or volunteer',
+            'donation.supportType': 'I would like to become',
+            'donation.donor': 'Donor',
+            'donation.volunteer': 'Volunteer',
+            'donation.name': 'Full name',
+            'donation.phone': 'Phone',
+            'donation.message': 'Message',
+            'donation.submit': 'Send my request',
+            'donation.sending': 'Sending...',
+            'donation.success': 'Thank you! Your request has been received.',
+            'donation.error': 'Unable to send your request at the moment. Please contact us directly.',
+            'actions.details': 'Action details',
+            'actions.gallery': 'Activity photos',
+            'footer.rights': 'All rights reserved.',
+            'footer.privacy': 'Privacy policy',
+            'footer.legalLink': 'Legal notice',
+            'theme.dark': 'Dark',
+            'theme.light': 'Light'
         }
     };
 
+    const languages = ['fr', 'mg', 'en'];
     const state = {
         content: null,
-        language: localStorage.getItem('mamafi_language') || 'fr',
+        language: languages.includes(localStorage.getItem('mamafi_language')) ? localStorage.getItem('mamafi_language') : 'fr',
         darkMode: localStorage.getItem('mamafi_dark_mode') === 'true',
         currentHero: 0,
         carouselTimer: null,
@@ -129,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const darkToggle = document.querySelector('#dark-toggle');
 
         languageToggle?.addEventListener('click', () => {
-            state.language = state.language === 'fr' ? 'mg' : 'fr';
+            state.language = languages[(languages.indexOf(state.language) + 1) % languages.length];
             localStorage.setItem('mamafi_language', state.language);
             renderAll();
         });
@@ -211,15 +243,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const languageToggle = document.querySelector('#language-toggle');
         if (languageToggle) {
+            const nextLanguage = languages[(languages.indexOf(state.language) + 1) % languages.length];
             const label = languageToggle.querySelector('.language-code');
-            if (label) label.textContent = state.language === 'fr' ? 'MG' : 'FR';
+            if (label) label.textContent = nextLanguage.toUpperCase();
             const flag = languageToggle.querySelector('.flag-icon');
-            flag?.classList.toggle('flag-mg', state.language === 'fr');
-            flag?.classList.toggle('flag-fr', state.language === 'mg');
-            const targetLanguage = state.language === 'fr' ? 'malagasy' : 'francais';
+            flag?.classList.remove('flag-fr', 'flag-mg', 'flag-en');
+            flag?.classList.add(`flag-${nextLanguage}`);
+            const languageNames = { fr: 'français', mg: 'malagasy', en: 'English' };
+            const targetLanguage = languageNames[nextLanguage];
             languageToggle.setAttribute('aria-label', `Afficher le site en ${targetLanguage}`);
             languageToggle.setAttribute('title', `Afficher le site en ${targetLanguage}`);
-            languageToggle.classList.toggle('active', state.language === 'mg');
+            languageToggle.classList.toggle('active', state.language !== 'fr');
         }
 
         applyTheme();
@@ -551,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function translate(value) {
         if (value && typeof value === 'object' && !Array.isArray(value)) {
-            return value[state.language] || value.fr || value.mg || '';
+            return value[state.language] || value.fr || value.mg || value.en || '';
         }
         return value || '';
     }

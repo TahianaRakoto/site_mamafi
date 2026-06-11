@@ -116,6 +116,15 @@ body.dark-mode {
     background: linear-gradient(90deg, #027afb 0 33.33%, #ffffff 33.33% 66.66%, #ef4135 66.66%);
 }
 
+.flag-en {
+    background:
+        linear-gradient(33deg, transparent 42%, #ffffff 42% 47%, #c8102e 47% 53%, #ffffff 53% 58%, transparent 58%),
+        linear-gradient(-33deg, transparent 42%, #ffffff 42% 47%, #c8102e 47% 53%, #ffffff 53% 58%, transparent 58%),
+        linear-gradient(90deg, transparent 38%, #ffffff 38% 44%, #c8102e 44% 56%, #ffffff 56% 62%, transparent 62%),
+        linear-gradient(transparent 34%, #ffffff 34% 42%, #c8102e 42% 58%, #ffffff 58% 66%, transparent 66%),
+        #012169;
+}
+
 .flag-mg {
     background: linear-gradient(90deg, #efefef 0 33.33%, transparent 33.33%);
 }

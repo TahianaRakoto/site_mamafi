@@ -206,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loginPanel.classList.add('hidden');
         adminPanel.classList.remove('hidden');
         logoutButton.classList.remove('hidden');
+        ensureEnglishFields();
         fillFormFields();
         renderListEditors();
         bindStaticImagePreview();
@@ -226,6 +227,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const logoPreview = document.querySelector('[data-path="identity.logo"]')?.closest('.image-upload-field')?.querySelector('[data-upload-preview]');
         if (logoPreview) logoPreview.src = state.content.identity.logo || './assets/images/mamafi-logo.png';
+    }
+
+    function ensureEnglishFields() {
+        document.querySelectorAll('[data-path$=".mg"]').forEach((field) => {
+            const englishPath = field.dataset.path.replace(/\.mg$/, '.en');
+            if (document.querySelector(`[data-path="${englishPath}"]`)) return;
+
+            const wrapper = field.closest('.admin-field');
+            if (!wrapper) return;
+            const englishWrapper = wrapper.cloneNode(true);
+            const englishField = englishWrapper.querySelector('[data-path]');
+            const englishLabel = englishWrapper.querySelector('label');
+            englishField.dataset.path = englishPath;
+            englishField.value = '';
+            if (englishLabel) englishLabel.textContent = englishLabel.textContent.replace(/\bMG\b/, 'EN');
+            wrapper.insertAdjacentElement('afterend', englishWrapper);
+        });
     }
 
     function collectFormFields() {
@@ -273,6 +291,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <label>Legende MG</label>
                         <input data-field="caption.mg" value="${escapeHtml(image.caption.mg)}" type="text">
                     </div>
+                    <div class="admin-field">
+                        <label>Legende EN</label>
+                        <input data-field="caption.en" value="${escapeHtml(image.caption.en)}" type="text">
+                    </div>
                     </div>
                 </div>
                 ${imageControlsMarkup(image.display)}
@@ -289,7 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
             url: fieldValue(card, 'url'),
             caption: {
                 fr: fieldValue(card, 'caption.fr'),
-                mg: fieldValue(card, 'caption.mg')
+                mg: fieldValue(card, 'caption.mg'),
+                en: fieldValue(card, 'caption.en')
             },
             display: collectImageDisplay(card)
         }));
@@ -382,7 +405,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 url: fieldValue(galleryCard, 'url'),
                 caption: {
                     fr: fieldValue(galleryCard, 'caption.fr'),
-                    mg: fieldValue(galleryCard, 'caption.mg')
+                    mg: fieldValue(galleryCard, 'caption.mg'),
+                    en: fieldValue(galleryCard, 'caption.en')
                 },
                 display: collectImageDisplay(galleryCard)
             }))
@@ -570,6 +594,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <label>Libelle MG</label>
                         <input data-field="label.mg" value="${escapeHtml(item.label.mg)}" type="text">
                     </div>
+                    <div class="admin-field">
+                        <label>Libelle EN</label>
+                        <input data-field="label.en" value="${escapeHtml(item.label.en)}" type="text">
+                    </div>
                 </div>
                 <button type="button" class="admin-button danger icon-button mt-3" data-remove-impact="${index}"><i data-lucide="trash-2"></i>Supprimer</button>
             </article>
@@ -583,7 +611,8 @@ document.addEventListener('DOMContentLoaded', () => {
             value: fieldValue(card, 'value'),
             label: {
                 fr: fieldValue(card, 'label.fr'),
-                mg: fieldValue(card, 'label.mg')
+                mg: fieldValue(card, 'label.mg'),
+                en: fieldValue(card, 'label.en')
             }
         }));
     }
@@ -605,6 +634,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="admin-field">
                         <label>Legende MG</label>
                         <input data-field="caption.mg" value="${escapeHtml(image.caption.mg)}" type="text">
+                    </div>
+                    <div class="admin-field">
+                        <label>Legende EN</label>
+                        <input data-field="caption.en" value="${escapeHtml(image.caption.en)}" type="text">
                     </div>
                     </div>
                 </div>
@@ -654,6 +687,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <label>${label} MG</label>
                 <input data-field="${field}.mg" value="${escapeHtml(value.mg)}" type="text">
             </div>
+            <div class="admin-field">
+                <label>${label} EN</label>
+                <input data-field="${field}.en" value="${escapeHtml(value.en)}" type="text">
+            </div>
         `;
     }
 
@@ -667,13 +704,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 <label>${label} MG</label>
                 <textarea data-field="${field}.mg">${escapeHtml(value.mg)}</textarea>
             </div>
+            <div class="admin-field">
+                <label>${label} EN</label>
+                <textarea data-field="${field}.en">${escapeHtml(value.en)}</textarea>
+            </div>
         `;
     }
 
     function collectI18n(card, field) {
         return {
             fr: fieldValue(card, `${field}.fr`),
-            mg: fieldValue(card, `${field}.mg`)
+            mg: fieldValue(card, `${field}.mg`),
+            en: fieldValue(card, `${field}.en`)
         };
     }
 
@@ -779,9 +821,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function normalizeI18n(value) {
         if (value && typeof value === 'object' && !Array.isArray(value)) {
-            return { fr: value.fr || '', mg: value.mg || '' };
+            return { fr: value.fr || '', mg: value.mg || '', en: value.en || '' };
         }
-        return { fr: value || '', mg: '' };
+        return { fr: value || '', mg: '', en: '' };
     }
 
     function normalizeImage(image) {
@@ -800,14 +842,14 @@ document.addEventListener('DOMContentLoaded', () => {
             location: 'Madagascar',
             period: '',
             status: 'En preparation',
-            title: { fr: 'Nouveau domaine', mg: '' },
-            description: { fr: 'Resume du domaine.', mg: '' },
-            details: { fr: 'Details des activites.', mg: '' },
-            objectives: { fr: 'Objectifs du projet.', mg: '' },
-            results: { fr: 'Resultats attendus.', mg: '' },
+            title: { fr: 'Nouveau domaine', mg: '', en: 'New action area' },
+            description: { fr: 'Resume du domaine.', mg: '', en: 'Action area summary.' },
+            details: { fr: 'Details des activites.', mg: '', en: 'Activity details.' },
+            objectives: { fr: 'Objectifs du projet.', mg: '', en: 'Project objectives.' },
+            results: { fr: 'Resultats attendus.', mg: '', en: 'Expected results.' },
             imageUrl: './assets/images/1.jpg',
             imageDisplay: normalizeDisplay(),
-            caption: { fr: 'Legende de l image.', mg: '' },
+            caption: { fr: 'Legende de l image.', mg: '', en: 'Image caption.' },
             gallery: [createImage('./assets/images/1.jpg')]
         };
     }
@@ -818,12 +860,12 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'Association',
             date: new Date().toISOString().slice(0, 10),
             featured: false,
-            title: { fr: 'Nouveau contenu', mg: '' },
-            description: { fr: 'Description du contenu.', mg: '' },
-            details: { fr: 'Texte detaille de l actualite.', mg: '' },
+            title: { fr: 'Nouveau contenu', mg: '', en: 'New content' },
+            description: { fr: 'Description du contenu.', mg: '', en: 'Content description.' },
+            details: { fr: 'Texte detaille de l actualite.', mg: '', en: 'Detailed news text.' },
             imageUrl: './assets/images/5.jpg',
             imageDisplay: normalizeDisplay(),
-            caption: { fr: 'Legende de l image.', mg: '' }
+            caption: { fr: 'Legende de l image.', mg: '', en: 'Image caption.' }
         };
     }
 
@@ -851,7 +893,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Nouvelle zone',
             latitude: -19.8659,
             longitude: 47.0333,
-            description: { fr: 'Description de la zone.', mg: '' }
+            description: { fr: 'Description de la zone.', mg: '', en: 'Area description.' }
         };
     }
 
@@ -859,7 +901,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return {
             id: createId('impact'),
             value: '0',
-            label: { fr: 'Nouveau chiffre cle', mg: '' }
+            label: { fr: 'Nouveau chiffre cle', mg: '', en: 'New key figure' }
         };
     }
 
@@ -867,7 +909,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return {
             id: createId('image'),
             url,
-            caption: { fr: 'Legende de l image.', mg: '' },
+            caption: { fr: 'Legende de l image.', mg: '', en: 'Image caption.' },
             display: normalizeDisplay()
         };
     }

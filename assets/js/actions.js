@@ -37,18 +37,38 @@ document.addEventListener('DOMContentLoaded', () => {
             engagementTitle: 'Andao hiara-hiasa',
             engagementText: "Tohano ny asan'ny MAMAFI amin'ny maha-mpanome na mpilatsaka an-tsitrapo.",
             engagementButton: 'Handray anjara'
+        },
+        en: {
+            'nav.home': 'Home',
+            'nav.about': 'About us',
+            'nav.actions': 'Our work',
+            'nav.news': 'News',
+            'nav.donation': 'Support us',
+            all: 'All projects',
+            discover: 'Discover the project',
+            objectives: 'Objectives',
+            results: 'Actions and expected results',
+            gallery: 'Gallery',
+            location: 'Area',
+            period: 'Period',
+            status: 'Status',
+            close: 'Close',
+            engagementTitle: 'Let us act together',
+            engagementText: 'Support MAMAFI by becoming a donor or volunteer.',
+            engagementButton: 'Get involved'
         }
     };
 
+    const languages = ['fr', 'mg', 'en'];
     const state = {
         content: null,
-        language: localStorage.getItem('mamafi_language') || 'fr',
+        language: languages.includes(localStorage.getItem('mamafi_language')) ? localStorage.getItem('mamafi_language') : 'fr',
         darkMode: localStorage.getItem('mamafi_dark_mode') === 'true',
         filter: 'all'
     };
 
     document.querySelector('#language-toggle')?.addEventListener('click', () => {
-        state.language = state.language === 'fr' ? 'mg' : 'fr';
+        state.language = languages[(languages.indexOf(state.language) + 1) % languages.length];
         localStorage.setItem('mamafi_language', state.language);
         render();
     });
@@ -109,10 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
             node.textContent = label(node.dataset.label);
         });
         const languageButton = document.querySelector('#language-toggle');
-        languageButton.querySelector('.language-code').textContent = state.language === 'fr' ? 'MG' : 'FR';
+        const nextLanguage = languages[(languages.indexOf(state.language) + 1) % languages.length];
+        languageButton.querySelector('.language-code').textContent = nextLanguage.toUpperCase();
         const flag = languageButton.querySelector('.flag-icon');
-        flag.classList.toggle('flag-mg', state.language === 'fr');
-        flag.classList.toggle('flag-fr', state.language === 'mg');
+        flag.classList.remove('flag-fr', 'flag-mg', 'flag-en');
+        flag.classList.add(`flag-${nextLanguage}`);
     }
 
     function renderIdentity() {
@@ -253,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function t(value) {
-        return value && typeof value === 'object' ? value[state.language] || value.fr || value.mg || '' : value || '';
+        return value && typeof value === 'object' ? value[state.language] || value.fr || value.mg || value.en || '' : value || '';
     }
 
     function label(key) {

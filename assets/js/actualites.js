@@ -39,18 +39,39 @@ document.addEventListener('DOMContentLoaded', () => {
             articles: 'vaovao',
             socialTitle: 'Araho ny asanay',
             socialText: "Araho amin'ny tambajotra sosialy ny vaovao momba ny fikambanana."
+        },
+        en: {
+            'nav.home': 'Home',
+            'nav.about': 'About us',
+            'nav.actions': 'Our work',
+            'nav.news': 'News',
+            'nav.donation': 'Support us',
+            journal: 'Our journal',
+            filter: 'Filter news',
+            all: 'All news',
+            latest: 'Latest from MAMAFI',
+            listTitle: 'All our news',
+            read: 'Read more',
+            featured: 'Featured story',
+            close: 'Close',
+            empty: 'There is no news in this category.',
+            article: 'article',
+            articles: 'articles',
+            socialTitle: 'Follow our work',
+            socialText: 'Follow the association news on our social networks.'
         }
     };
 
+    const languages = ['fr', 'mg', 'en'];
     const state = {
         content: null,
-        language: localStorage.getItem('mamafi_language') || 'fr',
+        language: languages.includes(localStorage.getItem('mamafi_language')) ? localStorage.getItem('mamafi_language') : 'fr',
         darkMode: localStorage.getItem('mamafi_dark_mode') === 'true',
         filter: 'all'
     };
 
     document.querySelector('#language-toggle')?.addEventListener('click', () => {
-        state.language = state.language === 'fr' ? 'mg' : 'fr';
+        state.language = languages[(languages.indexOf(state.language) + 1) % languages.length];
         localStorage.setItem('mamafi_language', state.language);
         render();
     });
@@ -138,10 +159,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#close-news-detail span').textContent = label('close');
 
         const languageButton = document.querySelector('#language-toggle');
-        languageButton.querySelector('.language-code').textContent = state.language === 'fr' ? 'MG' : 'FR';
+        const nextLanguage = languages[(languages.indexOf(state.language) + 1) % languages.length];
+        languageButton.querySelector('.language-code').textContent = nextLanguage.toUpperCase();
         const flag = languageButton.querySelector('.flag-icon');
-        flag.classList.toggle('flag-mg', state.language === 'fr');
-        flag.classList.toggle('flag-fr', state.language === 'mg');
+        flag.classList.remove('flag-fr', 'flag-mg', 'flag-en');
+        flag.classList.add(`flag-${nextLanguage}`);
     }
 
     function renderFilters() {
@@ -310,7 +332,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function formatDate(value) {
         if (!value) return '';
-        return new Intl.DateTimeFormat(state.language === 'mg' ? 'mg-MG' : 'fr-FR', {
+        const locales = { fr: 'fr-FR', mg: 'mg-MG', en: 'en-GB' };
+        return new Intl.DateTimeFormat(locales[state.language] || 'fr-FR', {
             day: 'numeric',
             month: 'long',
             year: 'numeric'
@@ -322,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function t(value) {
-        return value && typeof value === 'object' ? value[state.language] || value.fr || value.mg || '' : value || '';
+        return value && typeof value === 'object' ? value[state.language] || value.fr || value.mg || value.en || '' : value || '';
     }
 
     function label(key) {

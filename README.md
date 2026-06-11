@@ -37,7 +37,7 @@ Le mot de passe peut etre change depuis l'administration. Le nouveau mot de pass
 - `assets/payment/` contient uniquement les logos des moyens de don.
 - Les contenus du site sont stockes dans `data/content.json`.
 - Les promesses de dons sont stockees dans `data/donations.json`.
-- Les styles, textes bilingues, images, legendes, domaines d'action, galeries, reseaux sociaux et moyens de dons sont modifiables dans l'admin.
+- Les styles, textes trilingues (francais, malagasy et anglais), images, legendes, domaines d'action, galeries, reseaux sociaux et moyens de dons sont modifiables dans l'admin.
 - Les images et logos sont ajoutes directement depuis l'ordinateur avec aperçu, sans devoir saisir une URL. Formats acceptes : JPG, PNG, WebP et GIF, jusqu'a 12 Mo.
 - Chaque image dispose d'une miniature et de reglages non destructifs : hauteur, cadrage, luminosite, contraste, saturation et rotation.
 - La page publique comprend une bande de partenaires et une carte OpenStreetMap des zones d'intervention.

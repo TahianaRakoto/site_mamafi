@@ -512,7 +512,7 @@ function sanitizeActionList(value) {
         imageDisplay: sanitizeImageDisplay(item.imageDisplay),
         caption: sanitizeI18n(item.caption),
         gallery: sanitizeImageList(item.gallery)
-    })).filter((item) => item.title.fr || item.title.mg);
+    })).filter((item) => item.title.fr || item.title.mg || item.title.en);
 }
 
 function sanitizeContentList(value) {
@@ -531,7 +531,7 @@ function sanitizeContentList(value) {
         imageUrl: cleanString(item.imageUrl || './assets/images/5.jpg'),
         imageDisplay: sanitizeImageDisplay(item.imageDisplay),
         caption: sanitizeI18n(item.caption)
-    })).filter((item) => item.title.fr || item.title.mg);
+    })).filter((item) => item.title.fr || item.title.mg || item.title.en);
 }
 
 function sanitizeImageList(value) {
@@ -649,13 +649,15 @@ function sanitizeI18n(value) {
     if (value && typeof value === 'object' && !Array.isArray(value)) {
         return {
             fr: cleanString(value.fr),
-            mg: cleanString(value.mg)
+            mg: cleanString(value.mg),
+            en: cleanString(value.en)
         };
     }
 
     return {
         fr: cleanString(value),
-        mg: ''
+        mg: '',
+        en: ''
     };
 }
 
